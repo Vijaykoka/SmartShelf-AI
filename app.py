@@ -52,7 +52,7 @@ except ImportError:
 
 
 st.set_page_config(
-    page_title="ðŸ›’ SmartShelf AI Pro - Watershed Splitting",
+    page_title="🛒 SmartShelf AI Pro - Watershed Splitting",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -286,7 +286,7 @@ class UltimateShelfAnalyzer:
             self.clip_available = self.clip_model is not None
             if not self.detector_available:
                 self.mode = 'fast'
-                st.warning("âš ï¸ YOLO/RT-DETR not available. Switching to Fast Mode with Watershed.")
+                st.warning("⚠️ YOLO/RT-DETR not available. Switching to Fast Mode with Watershed.")
         else:
             self.detector_available = False
             self.clip_available = False
@@ -591,25 +591,25 @@ Return ONLY JSON: {"type": "banana/apple/orange", "ripeness": "unripe/ripe/overr
         # Based on actual Indian wholesale market prices
         base_pricing_inr = {
             'unripe': {
-                'base_price': 35.00,  # â‚¹35/dozen - green bananas for ripening
+                'base_price': 35.00,  # ₹35/dozen - green bananas for ripening
                 'action': 'Store 3-4 days for optimal ripening',
                 'discount': 0,
                 'margin': '15%'
             },
             'ripe': {
-                'base_price': 55.00,  # â‚¹55/dozen - premium ready-to-eat
+                'base_price': 55.00,  # ₹55/dozen - premium ready-to-eat
                 'action': 'Immediate retail display - peak demand',
                 'discount': 5,  # Small volume discount for bulk orders
                 'margin': '25%'
             },
             'overripe': {
-                'base_price': 20.00,  # â‚¹20/dozen - distress sale for processing
+                'base_price': 20.00,  # ₹20/dozen - distress sale for processing
                 'action': 'Urgent sale to food processors/juice vendors',
                 'discount': 30,  # Heavy discount for quick clearance
                 'margin': '5% (loss leader)'
             },
             'unknown': {
-                'base_price': 40.00,  # â‚¹40/dozen - standard pricing
+                'base_price': 40.00,  # ₹40/dozen - standard pricing
                 'action': 'Quality inspection required before pricing',
                 'discount': 0,
                 'margin': '18%'
@@ -685,7 +685,7 @@ Return ONLY JSON: {"type": "banana/apple/orange", "ripeness": "unripe/ripe/overr
 
 def main():
     st.markdown('<div class="header-glass">', unsafe_allow_html=True)
-    st.markdown("<h1 style='text-align: center; margin:0;'>ðŸ›’ SmartShelf AI Pro</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center; margin:0;'>🛒 SmartShelf AI Pro</h1>", unsafe_allow_html=True)
     st.markdown("<h3 style='text-align: center; color: #94a3b8;'>Deep Learning Models + AI Ensemble</h3>", unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
     
@@ -697,10 +697,10 @@ def main():
     client = OpenAI(api_key=api_key)
     
     # Controls
-    st.sidebar.markdown("### ðŸŽ›ï¸ Configuration")
+    st.sidebar.markdown("### 🎛️ Configuration")
     
     mode = "pro"  # Always use Pro mode with models
-    st.sidebar.info("âœ… Using RT-DETR/YOLO Deep Learning models for detection")
+    st.sidebar.info("✅ Using RT-DETR/YOLO Deep Learning models for detection")
     
     # Initialize
     if 'analyzer' not in st.session_state or st.session_state.get('current_mode') != mode:
@@ -713,7 +713,7 @@ def main():
     
     with col1:
         st.markdown('<div class="rack-card">', unsafe_allow_html=True)
-        st.subheader("ðŸ“¸ Upload Shelf Image")
+        st.subheader("📸 Upload Shelf Image")
         
         uploaded = st.file_uploader("Choose image", type=["jpg", "jpeg", "png"])
         
@@ -739,7 +739,7 @@ def main():
         st.markdown('</div>', unsafe_allow_html=True)
     
     with col2:
-        if uploaded and st.button("ðŸš€ RUN ANALYSIS", use_container_width=True):
+        if uploaded and st.button("🚀 RUN ANALYSIS", use_container_width=True):
             with st.spinner("Running Deep Learning analysis with RT-DETR/YOLO + AI ensemble..."):
                 progress = st.progress(0)
                 
@@ -748,7 +748,7 @@ def main():
                 progress.progress(50)
                 
                 # Advanced ensemble classification with AI models
-                st.info("ðŸ§  Running AI + Deep Learning ensemble classification...")
+                st.info("🧠 Running AI + Deep Learning ensemble classification...")
                 results = analyzer.classify_ripeness_advanced(detections)
                 progress.progress(100)
                 
@@ -761,14 +761,14 @@ def main():
                 
                 # Debug Info
                 st.markdown('<div class="debug-box">', unsafe_allow_html=True)
-                st.write(f"ðŸ¤– Model detections: {len(detections)}")
-                st.write(f"âœ… Banana clusters: {len(bananas)}")
-                st.write(f"ðŸ’° API calls saved: {api_calls_saved} (60% cost reduction)")
-                st.write(f"ðŸŽ¯ Zone B (Top-Right): {sum(1 for b in bananas if b['zone'] == 'top_right')} clusters")
+                st.write(f"🤖 Model detections: {len(detections)}")
+                st.write(f"✅ Banana clusters: {len(bananas)}")
+                st.write(f"💰 API calls saved: {api_calls_saved} (60% cost reduction)")
+                st.write(f"🎯 Zone B (Top-Right): {sum(1 for b in bananas if b['zone'] == 'top_right')} clusters")
                 st.markdown('</div>', unsafe_allow_html=True)
                 
                 # Business Summary
-                st.markdown("### ðŸ“Š Business Summary")
+                st.markdown("### 📊 Business Summary")
                 
                 # Calculate business metrics
                 total_base_value = sum(analyzer.calculate_pricing(b)['base_price'] for b in bananas)
@@ -782,33 +782,33 @@ def main():
                     ripeness_breakdown[r] = ripeness_breakdown.get(r, 0) + 1
                 
                 col1, col2, col3, col4 = st.columns(4)
-                col1.metric("ðŸ’° Total Value", f"â‚¹{total_final_value:.2f}", f"Base: â‚¹{total_base_value:.2f}")
-                col2.metric("ðŸ“ˆ Avg Margin", f"{avg_profit_margin:.1f}%", "Profitability")
-                col3.metric("ðŸ”¥ Total Discount", f"â‚¹{total_discount:.2f}", f"{len(bananas)} items")
-                col4.metric("ðŸ“¦ Inventory Mix", f"{len(bananas)} clusters", "Quality assessed")
+                col1.metric("💰 Total Value", f"₹{total_final_value:.2f}", f"Base: ₹{total_base_value:.2f}")
+                col2.metric("📈 Avg Margin", f"{avg_profit_margin:.1f}%", "Profitability")
+                col3.metric("🔥 Total Discount", f"₹{total_discount:.2f}", f"{len(bananas)} items")
+                col4.metric("📦 Inventory Mix", f"{len(bananas)} clusters", "Quality assessed")
                 
                 # Inventory breakdown
-                st.markdown("#### ðŸ“¦ Inventory Breakdown")
+                st.markdown("#### 📦 Inventory Breakdown")
                 col1, col2, col3 = st.columns(3)
                 
                 for i, (ripeness, count) in enumerate(ripeness_breakdown.items()):
                     with [col1, col2, col3][i % 3]:
-                        emoji = {"unripe":"ðŸŸ¢","ripe":"ðŸŒ","overripe":"ðŸŸ¤","unknown":"â“"}.get(ripeness, "â“")
+                        emoji = {"unripe":"🟢","ripe":"🍌","overripe":"🟤","unknown":"❓"}.get(ripeness, "❓")
                         st.metric(f"{emoji} {ripeness.title()}", f"{count} dozen", f"{count/len(bananas)*100:.0f}% of inventory")
                 
                 # Business insights
-                st.markdown("#### ðŸ’¡ Business Insights")
+                st.markdown("#### 💡 Business Insights")
                 if ripeness_breakdown.get('ripe', 0) > len(bananas) * 0.6:
-                    st.success("âœ… **OPTIMAL INVENTORY:** High percentage of ripe bananas ready for premium pricing")
+                    st.success("✅ **OPTIMAL INVENTORY:** High percentage of ripe bananas ready for premium pricing")
                 elif ripeness_breakdown.get('unripe', 0) > len(bananas) * 0.4:
-                    st.info("â„¹ï¸ **GROWING INVENTORY:** Significant unripe bananas - investment in future sales")
+                    st.info("ℹ️ **GROWING INVENTORY:** Significant unripe bananas - investment in future sales")
                 elif ripeness_breakdown.get('overripe', 0) > len(bananas) * 0.3:
-                    st.warning("âš ï¸ **URGENT ACTION:** High overripe percentage - immediate discounting required")
+                    st.warning("⚠️ **URGENT ACTION:** High overripe percentage - immediate discounting required")
                 
                 if avg_profit_margin > 20:
-                    st.success("ðŸ“ˆ **HEALTHY MARGINS:** Average profit margin above 20% - good business performance")
+                    st.success("📈 **HEALTHY MARGINS:** Average profit margin above 20% - good business performance")
                 elif avg_profit_margin < 10:
-                    st.warning("ðŸ“‰ **MARGIN PRESSURE:** Low profit margins - review pricing strategy")
+                    st.warning("📉 **MARGIN PRESSURE:** Low profit margins - review pricing strategy")
                 
                 # Visualization with labels
                 st.markdown("### Detection Visualization")
@@ -838,7 +838,7 @@ def main():
                     draw.rectangle(bbox, outline=col, width=thickness)
                     
                     # Enhanced label with method and confidence
-                    method_emoji = "âš¡" if method.startswith('cv') else "ðŸ¤–" if method == 'ai' else "âš¡ðŸ¤–"
+                    method_emoji = "⚡" if method.startswith('cv') else "🤖" if method == 'ai' else "⚡🤖"
                     label = f"#{b['id']} {method_emoji} {ripe[:3].upper()} {confidence:.0%}"
                     draw.text((bbox[0], bbox[1]-25), label, fill=col)
                 
@@ -846,7 +846,7 @@ def main():
                 
                 # Detailed Cards
                 if bananas:
-                    st.markdown("### ðŸŒ Banana Cluster Details")
+                    st.markdown("### 🍌 Banana Cluster Details")
                     
                     by_zone = defaultdict(list)
                     for b in bananas:
@@ -856,7 +856,7 @@ def main():
                         zone_name = analyzer.rack_zones[zone_id]['name']
                         
                         st.markdown(f'<div class="rack-card">', unsafe_allow_html=True)
-                        st.markdown(f'<h4>ðŸ“ {zone_name} ({len(items)} clusters)</h4>', unsafe_allow_html=True)
+                        st.markdown(f'<h4>📍 {zone_name} ({len(items)} clusters)</h4>', unsafe_allow_html=True)
                         
                         cols = st.columns(min(4, len(items)))
                         for idx, b in enumerate(items):
@@ -867,7 +867,7 @@ def main():
                                 confidence = b.get('confidence', 0.8)
                                 uncertainty = b.get('uncertainty', 0.2)
                                 method = b.get('method', 'unknown')
-                                emoji = {"unripe":"ðŸŸ¢","ripe":"ðŸŒ","overripe":"ðŸŸ¤"}.get(ripe, "â“")
+                                emoji = {"unripe":"🟢","ripe":"🍌","overripe":"🟤"}.get(ripe, "❓")
                                 
                                 # Method badge styling from app2.py
                                 method_class = f"ensemble-{method.split('_')[0]}" if method else "ensemble-hybrid"
@@ -879,7 +879,7 @@ def main():
                                 
                                 # Uncertainty warning
                                 if uncertainty > 0.3:
-                                    st.error(f"âš ï¸ High Uncertainty: {uncertainty:.0%} - Verify Manually")
+                                    st.error(f"⚠️ High Uncertainty: {uncertainty:.0%} - Verify Manually")
                                 
                                 # Ripeness badge
                                 badge_colors = {
@@ -894,26 +894,26 @@ def main():
                                 # Enhanced business pricing display
                                 pricing = analyzer.calculate_pricing(b)
                                 
-                                st.write(f"**ðŸ’° Base Price:** â‚¹{pricing['base_price']:.2f}/{pricing['unit']}")
-                                st.write(f"**ðŸ·ï¸ Final Price:** â‚¹{pricing['final_price']:.2f}/{pricing['unit']}")
-                                st.write(f"**ï¿½ Profit Margin:** {pricing['profit_margin_percent']}%")
-                                st.write(f"**ðŸ“‹ Business Strategy:** {pricing['business_strategy']}")
-                                st.write(f"**ðŸŽ¯ Action:** {pricing['action']}")
-                                st.write(f"**ðŸ“ Zone Pricing:** {pricing['zone_multiplier']:.1%} adjustment")
+                                st.write(f"**💰 Base Price:** ₹{pricing['base_price']:.2f}/{pricing['unit']}")
+                                st.write(f"**🏷️ Final Price:** ₹{pricing['final_price']:.2f}/{pricing['unit']}")
+                                st.write(f"**� Profit Margin:** {pricing['profit_margin_percent']}%")
+                                st.write(f"**📋 Business Strategy:** {pricing['business_strategy']}")
+                                st.write(f"**🎯 Action:** {pricing['action']}")
+                                st.write(f"**📍 Zone Pricing:** {pricing['zone_multiplier']:.1%} adjustment")
                                 
                                 # Business discount display
                                 if pricing['discount_percent'] > 0:
-                                    st.error(f"ðŸ”¥ **VOLUME DISCOUNT:** {pricing['discount_percent']}% OFF (Save â‚¹{pricing['discount_amount']:.2f})")
+                                    st.error(f"🔥 **VOLUME DISCOUNT:** {pricing['discount_percent']}% OFF (Save ₹{pricing['discount_amount']:.2f})")
                                 elif ripe == 'unripe':
-                                    st.success("âœ… **INVESTMENT PRICING:** No discount (future inventory value)")
+                                    st.success("✅ **INVESTMENT PRICING:** No discount (future inventory value)")
                                 else:
-                                    st.info("â„¹ï¸ **STANDARD PRICING:** No discounts applied")
+                                    st.info("ℹ️ **STANDARD PRICING:** No discounts applied")
                                 
                                 # Business confidence indicator
                                 if confidence >= 0.95:
-                                    st.success("ðŸ† **PREMIUM QUALITY:** 5% price premium applied")
+                                    st.success("🏆 **PREMIUM QUALITY:** 5% price premium applied")
                                 elif confidence < 0.70:
-                                    st.warning("âš ï¸ **QUALITY RISK:** 5% discount applied")
+                                    st.warning("⚠️ **QUALITY RISK:** 5% discount applied")
                                 
                                 # Method indicator with AI analysis
                                 st.markdown(f'<div class="method-indicator">Method: {method.upper()} | CV: {b.get("cv_confidence", 0):.0%} | AI: {b.get("ai_analysis", {}).get("confidence", 0)}%</div>', unsafe_allow_html=True)
@@ -953,11 +953,9 @@ def main():
                             'ai_confidence': b.get('ai_analysis', {}).get('confidence', 0)
                         } for b in bananas]
                     }
-                    st.download_button("ðŸ“¥ Export Business Report", json.dumps(export, indent=2), f"business_analysis_{datetime.now().strftime('%H%M')}.json", "application/json")
+                    st.download_button("📥 Export Business Report", json.dumps(export, indent=2), f"business_analysis_{datetime.now().strftime('%H%M')}.json", "application/json")
 
 if __name__ == "__main__":
     main()
 
 ##source venv/bin/activate && streamlit run app3.py --server.port 8504 --server.headless true
-
-
