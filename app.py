@@ -50,8 +50,6 @@ try:
 except ImportError:
     CLIP_AVAILABLE = False
 
-# Load env vars
-load_dotenv()
 
 st.set_page_config(
     page_title="ðŸ›’ SmartShelf AI Pro - Watershed Splitting",
@@ -961,4 +959,5 @@ if __name__ == "__main__":
     main()
 
 ##source venv/bin/activate && streamlit run app3.py --server.port 8504 --server.headless true
+
 
