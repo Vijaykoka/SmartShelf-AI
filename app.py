@@ -11,11 +11,24 @@ import cv2
 import numpy as np
 from PIL import Image, ImageDraw, ImageEnhance
 from openai import OpenAI
-from dotenv import load_dotenv
 from datetime import datetime
 from collections import defaultdict, Counter
 import warnings
 warnings.filterwarnings('ignore')
+import os
+import streamlit as st
+
+api_key = None
+
+if "OPENAI_API_KEY" in st.secrets:
+    api_key = st.secrets["OPENAI_API_KEY"]
+else:
+    api_key = st.sidebar.text_input("🔑 OpenAI API Key", type="password")
+
+if not api_key:
+    st.warning("Please provide OpenAI API Key")
+    st.stop()
+
 
 # Optional imports
 try:
@@ -948,3 +961,4 @@ if __name__ == "__main__":
     main()
 
 ##source venv/bin/activate && streamlit run app3.py --server.port 8504 --server.headless true
+
